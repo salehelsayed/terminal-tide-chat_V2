@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clear P2P Chat Storage</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: #000;
+      color: #0f0;
+      padding: 50px;
+      text-align: center;
+    }
+    button {
+      background: #0f0;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      font-family: monospace;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:hover {
+      background: #0a0;
+    }
+    .info {
+      margin: 20px 0;
+      padding: 20px;
+      border: 1px solid #0f0;
+    }
+  </style>
+</head>
+<body>
+  <h1>P2P Chat Storage Manager</h1>
+  
+  <div class="info">
+    <h2>Current Storage:</h2>
+    <div id="storage-info"></div>
+  </div>
+  
+  <button onclick="clearKeys()">Clear Identity Keys Only</button>
+  <button onclick="clearAll()">Clear All Data</button>
+  <button onclick="window.location.href='/'">Back to Chat</button>
+  
+  <div id="message"></div>
+  
+  <script>
+    function showStorage() {
+      const info = document.getElementById('storage-info');
+      const keys = [];
+      
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('libp2p-')) {
+          keys.push(key);
+        }
+      }
+      
+      if (keys.length === 0) {
+        info.innerHTML = '<p>No libp2p data found in storage.</p>';
+      } else {
+        info.innerHTML = '<p>Found keys:</p><ul>' + 
+          keys.map(k => `<li>${k}</li>`).join('') + 
+          '</ul>';
+      }
+    }
+    
+    function clearKeys() {
+      localStorage.removeItem('libp2p-keys');
+      document.getElementById('message').innerHTML = '<p style="color: #0f0">Identity keys cleared! Reload the chat to generate new ones.</p>';
+      showStorage();
+    }
+    
+    function clearAll() {
+      const keys = [];
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('libp2p-')) {
+          keys.push(key);
+          localStorage.removeItem(key);
+        }
+      }
+      document.getElementById('message').innerHTML = '<p style="color: #ff0">All P2P chat data cleared!</p>';
+      showStorage();
+    }
+    
+    // Show current storage on load
+    showStorage();
+  </script>
+</body>
+</html>

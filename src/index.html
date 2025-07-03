@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P2P Chat Terminal</title>
+</head>
+<body>
+  <div id="app" class="terminal-app">
+    <!-- Header Bar -->
+    <div class="header-bar">
+      <div class="header-title">P2P Chat Terminal v1.0.0</div>
+      <div class="header-status">
+        <span class="status-indicator" id="connection-status">●</span>
+        <span id="connection-text">Disconnected</span>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+      <!-- Left Panel - Settings & Info -->
+      <div class="panel panel-left" id="left-panel">
+        <div class="panel-header">System</div>
+        <div class="panel-content">
+          <!-- Profile Section -->
+          <div class="section" id="profile-section">
+            <h3>Profile</h3>
+            <div class="info-row">
+              <span class="label">Peer ID:</span>
+              <span class="value" id="peer-id">Not initialized</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Nickname:</span>
+              <input type="text" id="nickname-input" class="terminal-input" placeholder="Anonymous">
+            </div>
+            <button class="terminal-button" id="export-keys-btn">Export Keys</button>
+          </div>
+
+          <!-- Network Stats -->
+          <div class="section" id="network-section">
+            <h3>Network</h3>
+            <div class="info-row">
+              <span class="label">Connections:</span>
+              <span class="value" id="connection-count">0</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Protocol:</span>
+              <span class="value">libp2p/1.0.0</span>
+            </div>
+            <div class="info-row">
+              <span class="label">DHT Status:</span>
+              <span class="value" id="dht-status">Inactive</span>
+            </div>
+          </div>
+
+          <!-- Settings Tabs -->
+          <div class="section" id="settings-section">
+            <h3>Settings</h3>
+            <div class="tabs">
+              <button class="tab-button active" data-tab="general">General</button>
+              <button class="tab-button" data-tab="display">Display</button>
+              <button class="tab-button" data-tab="audio">Audio</button>
+              <button class="tab-button" data-tab="files">Files</button>
+            </div>
+            <div class="tab-content" id="settings-content">
+              <!-- Tab content will be dynamically loaded -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Panel - Terminal/Chat -->
+      <div class="panel panel-center" id="center-panel">
+        <div class="panel-header">
+          <span id="current-channel">#Terminal</span>
+          <span class="channel-info" id="channel-info"></span>
+        </div>
+        <div class="panel-content">
+          <div class="terminal-output" id="terminal-output">
+            <div class="system-message">
+              ╔════════════════════════════════════════╗
+              ║    P2P Chat Terminal Initialized       ║
+              ║    Type /help for available commands   ║
+              ╚════════════════════════════════════════╝
+            </div>
+          </div>
+          <div class="terminal-input-container">
+            <span class="input-prompt" id="input-prompt">&gt;</span>
+            <input type="text" class="terminal-command-input" id="terminal-input" 
+                   placeholder="Type message or command..." autofocus>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Panel - Users -->
+      <div class="panel panel-right" id="right-panel">
+        <div class="panel-header">Online Users</div>
+        <div class="panel-content">
+          <div class="user-list" id="user-list">
+            <!-- Users will be dynamically added -->
+          </div>
+          <div class="add-friend-container">
+            <input type="text" class="terminal-input" id="add-friend-input" 
+                   placeholder="Peer ID to add...">
+            <button class="terminal-button" id="add-friend-btn">Add Friend</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Debug Panel (Hidden by default) -->
+    <div class="debug-panel hidden" id="debug-panel">
+      <div class="panel-header">
+        Debug Console
+        <button class="close-button" id="close-debug">&times;</button>
+      </div>
+      <div class="panel-content">
+        <div class="debug-info" id="debug-info">
+          <!-- Debug information will be displayed here -->
+        </div>
+        <div class="debug-controls">
+          <textarea class="terminal-input" id="debug-message" 
+                    placeholder="Raw message JSON..."></textarea>
+          <button class="terminal-button" id="send-raw-btn">Send Raw</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import/Export Modal -->
+  <div class="modal hidden" id="key-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title">Export Keys</h2>
+        <button class="close-button" id="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <textarea class="terminal-input" id="key-textarea" rows="10"></textarea>
+        <div class="modal-buttons">
+          <button class="terminal-button" id="copy-keys-btn">Copy to Clipboard</button>
+          <button class="terminal-button" id="import-keys-btn">Import Keys</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

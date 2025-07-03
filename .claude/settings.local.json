@@ -16,8 +16,25 @@
       "Bash(python:*)",
       "Bash(python -m pytest:*)",
       "Bash(python3 -m pytest:*)",
-      "WebFetch(domain:docs.anthropic.com)"
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:github.com)",
+      "mcp__libp2p-docs__list_examples",
+      "mcp__libp2p-docs__search_docs",
+      "mcp__libp2p-docs__fetch_docs",
+      "mcp__libp2p-docs__get_readme",
+      "Bash(npm install:*)",
+      "Bash(node:*)",
+      "Bash(rm:*)",
+      "Bash(npx webpack serve:*)"
     ],
     "deny": []
+  },
+  "mcpServers": {
+    "libp2p-docs": {
+      "command": "node",
+      "args": [
+        "/mnt/c/Users/s/Desktop/ADHOC/libp2p-mcp-server/dist/index.js"
+      ]
+    }
   }
 }

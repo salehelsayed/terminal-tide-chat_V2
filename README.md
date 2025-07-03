@@ -1,8 +1,36 @@
-# Context Engineering Template
+# Context Engineering Template + P2P Chat Application
 
-A comprehensive template for getting started with Context Engineering - the discipline of engineering context for AI coding assistants so they have the information necessary to get the job done end to end.
+A comprehensive template for getting started with Context Engineering, featuring a complete P2P chat application built with libp2p as a demonstration.
 
 > **Context Engineering is 10x better than prompt engineering and 100x better than vibe coding.**
+
+## 🎯 Included Example: P2P Chat Application
+
+This repository includes a fully implemented decentralized P2P chat application demonstrating Context Engineering principles:
+
+- **Decentralized Communication**: Browser-to-browser using libp2p with WebRTC
+- **DHT Peer Discovery**: Find peers without central servers
+- **Terminal UI**: Classic green-on-black terminal interface
+- **Persistent Identity**: Ed25519 keypairs stored locally
+- **Complete Test Suite**: Jest tests for all components
+
+### Running the P2P Chat
+
+```bash
+# Install dependencies
+npm install
+
+# Development mode
+npm run dev
+
+# Run tests
+npm test
+
+# Build for production
+npm run build
+```
+
+Visit `https://localhost:9000` (HTTPS required for WebRTC)
 
 ## 🚀 Quick Start
 
@@ -293,4 +321,5 @@ examples/
 ## Resources
 
 - [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
-- [Context Engineering Best Practices](https://www.philschmid.de/context-engineering)
+- [Context Engineering Best Practices](https://www.philschmid.de/context-engineering)#   t e r m i n a l - t i d e - c h a t _ V 2  
+ 
