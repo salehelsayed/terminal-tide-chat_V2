@@ -321,5 +321,4 @@ examples/
 ## Resources
 
 - [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
-- [Context Engineering Best Practices](https://www.philschmid.de/context-engineering)#   t e r m i n a l - t i d e - c h a t _ V 2  
- 
+- [Context Engineering Best Practices](https://www.philschmid.de/context-engineering)
